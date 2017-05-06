@@ -1,1 +1,1 @@
-# docker-centos-php-fpm
+# PHP-FPM Docker image
