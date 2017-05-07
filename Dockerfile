@@ -47,6 +47,11 @@ COPY conf/php-fpm/php.ini /etc/php.ini
 RUN yum -y install supervisor
 COPY conf/supervisor/supervisord.conf /etc/supervisord.conf
 
+# Forward logs to docker log collector
+RUN ln -sf /dev/stdout /var/log/php-fpm/access.log \
+	&& ln -sf /dev/stderr /var/log/fpm-php.www.log \
+  && ln -sf /dev/stderr /var/log/php-fpm/fpm-error.log
+
 # Clean up
 RUN yum clean all
 
