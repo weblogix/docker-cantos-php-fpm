@@ -13,7 +13,7 @@ MAINTAINER Randy Lowe <randy@weblogix.ca>
 RUN yum -y update
 
 # install tools
-RUN yum -y install epel-release initscripts nano bind-utils net-tools sendmail
+RUN yum -y install epel-release initscripts nano bind-utils net-tools ssmtp
 
 # Install PHP 7
 RUN \
