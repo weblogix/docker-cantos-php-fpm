@@ -1,4 +1,4 @@
-# PHP 7.1 Docker image.
+# PHP 7.2.1 Docker image.
 
 Nothing fancy. Just built from [webtatic.com](https://webtatic.com/).
 
