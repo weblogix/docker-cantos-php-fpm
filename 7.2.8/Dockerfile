@@ -43,6 +43,10 @@ RUN \
 COPY conf/php-fpm/www.conf /etc/php-fpm.d/www.conf
 COPY conf/php-fpm/php.ini /etc/php.ini
 
+# Composer
+RUN cd / && curl -o https://getcomposer.org/composer.phar
+RUN mv /composer.phar /usr/local/bin/composer
+
 # Copy supervisor configuration file
 RUN yum -y install supervisor
 COPY conf/supervisor/supervisord.conf /etc/supervisord.conf
