@@ -12,36 +12,43 @@ MAINTAINER Randy Lowe <randy@weblogix.ca>
 # normal updates
 RUN yum -y update
 
+RUN adduser php
+
 # install tools
-RUN yum -y install epel-release initscripts nano bind-utils net-tools ssmtp
+RUN yum -y install epel-release initscripts nano bind-utils net-tools ssmtp unzip
 
 # Install PHP 7
 RUN \
   rpm -Uvh https://mirror.webtatic.com/yum/el7/webtatic-release.rpm && \
 
   yum -y install \
-  php71w-fpm \
-  php71w-opcache \
-  php71w-bcmath \
-  php71w-cli \
-  php71w-common \
-  php71w-gd \
-  php71w-imap	\
-  php71w-mbstring	\
-  php71w-mcrypt	\
-  php71w-mysqlnd \
-  php71w-pdo \
-  php71w-pear	\
-  php71w-pecl-imagick	\
-  php71w-process \
-  php71w-pspell	\
-  php71w-recode	\
-  php71w-tidy	\
-  php71w-xml
+  php72w-fpm \
+  php72w-opcache \
+  php72w-bcmath \
+  php72w-cli \
+  php72w-common \
+  php72w-gd \
+  php72w-imap	\
+  php72w-mbstring	\
+  php72w-mcrypt	\
+  php72w-mysqlnd \
+  php72w-pdo \
+  php72w-pear	\
+  php72w-pecl-imagick	\
+  php72w-process \
+  php72w-pspell	\
+  php72w-recode	\
+  php72w-tidy	\
+  php72w-xml
 
 # Copy php-fpm configuration
 COPY conf/php-fpm/www.conf /etc/php-fpm.d/www.conf
 COPY conf/php-fpm/php.ini /etc/php.ini
+
+# Composer
+RUN cd / && curl -O https://getcomposer.org/composer.phar
+RUN mv /composer.phar /usr/local/bin/composer
+RUN chmod 755 /usr/local/bin/composer
 
 # Copy supervisor configuration file
 RUN yum -y install supervisor
